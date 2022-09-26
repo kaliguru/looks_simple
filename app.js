@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoute = require('./api/Routes/user')
 const uploadRoute = require('./api/Routes/upload');
+const xlstojson = require('./api/Routes/xlstojson');
 
 
 
@@ -22,13 +23,15 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json());
 app.use('/user',userRoute)
-app.use('/upload',uploadRoute)
+app.use('/upload',uploadRoute);
+app.use('/filejson',xlstojson)
 
 
 app.use((req,res,next)=>
 {
+    var port = "3000";
     res.status(200).json({
-        msg:"App is running"
+        msg:"App is running on${port}"
     })
 })
 

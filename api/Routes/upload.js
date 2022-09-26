@@ -2,6 +2,8 @@ const express = require('express');
 
 const multer = require('multer');
 const router = express.Router();
+const fs = require('fs-extra');
+const exeltojson =  require('convert-excel-to-json');
 
 const upload = multer({
     storage:multer.diskStorage({
@@ -11,10 +13,10 @@ const upload = multer({
         },
         filename:function(res,file,cb)
         {
-            cb(null,file.fieldname+"-"+Date.now()+ ".Xls")
+            cb(null,file.fieldname+ ".Xls")
         }
     })
-}).single("user_upload");
+}).single("JUSTWIN");
 
 
 router.post('/',upload,(req,res,next)=>
@@ -23,6 +25,11 @@ router.post('/',upload,(req,res,next)=>
         msg:'File Upload'
     })
 })
+
+
+
+
+
 
 
 module.exports = router
